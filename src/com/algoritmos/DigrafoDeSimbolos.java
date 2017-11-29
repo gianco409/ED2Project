@@ -17,9 +17,7 @@
 
 package com.algoritmos;
 
-import com.stdlib.StdIn;
-import com.stdlib.StdOut;
-import com.stdlib.In;
+import com.stdlib.*;
 
 /**
  *  The <tt>DigrafoDeSimbolos</tt> class represents a digraph, where the

@@ -33,8 +33,7 @@
 
 package com.algoritmos;
 
-import com.stdlib.In;
-import com.stdlib.StdOut;
+import com.stdlib.*;
 
 /**
  *  The <tt>OrdenPrimeraProfundidad</tt> class represents a data type for 

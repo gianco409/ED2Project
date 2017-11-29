@@ -22,9 +22,7 @@
 
 package com.algoritmos;
 
-import com.stdlib.In;
-import com.stdlib.StdOut;
-
+import com.stdlib.*;
 /**
  *  The <tt>LPAciclico</tt> class represents a data type for solving the
  *  single-source longest paths problem in edge-weighted directed

@@ -12,8 +12,7 @@
 
 package com.algoritmos;
 
-import com.stdlib.StdOut;
-import com.stdlib.StdIn;
+import com.stdlib.*;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.TreeMap;

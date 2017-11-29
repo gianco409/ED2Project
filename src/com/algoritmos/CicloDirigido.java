@@ -18,8 +18,7 @@
 
 package com.algoritmos;
 
-import com.stdlib.StdOut;
-import com.stdlib.In;
+import com.stdlib.*;
 
 /**
  *  The <tt>CicloDirigido</tt> class represents a data type for 

@@ -5,12 +5,16 @@
  */
 package com.algoritmos;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author gianco
  */
 public class CPMView extends javax.swing.JFrame {
-
+    ArrayList<Nodo> ListaNodos = new ArrayList<Nodo>();
+    ArrayList<Integer> predecesores = new ArrayList<Integer>();
     /**
      * Creates new form CPMView
      */
@@ -29,6 +33,18 @@ public class CPMView extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        PlanButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextActividad = new javax.swing.JTextField();
+        jTextDuracion = new javax.swing.JTextField();
+        jTextAcPre = new javax.swing.JTextField();
+        addButton = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
+        clearButton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        tiempototal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,28 +58,193 @@ public class CPMView extends javax.swing.JFrame {
             new String [] {
                 "Actividad", "Duración", "Inicio", "Fin", "Holgura"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+
+        PlanButton.setText("Planificar");
+        PlanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PlanButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Actividad");
+
+        jLabel2.setText("Duración");
+
+        jLabel3.setText("Actividades predecesoras");
+
+        addButton.setText("Agregar");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        saveButton.setText("Guardar");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+
+        clearButton.setText("Limpiar");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Tiempo total de terminación del proyecto");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextActividad))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(40, 40, 40)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextAcPre, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addButton))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(saveButton)
+                        .addGap(39, 39, 39)
+                        .addComponent(clearButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(PlanButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(tiempototal, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(181, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextAcPre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addButton))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveButton)
+                    .addComponent(clearButton))
+                .addGap(68, 68, 68)
+                .addComponent(PlanButton)
+                .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(130, 130, 130))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(tiempototal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void PlanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlanButtonActionPerformed
+        // TODO add your handling code here:
+        int N = ListaNodos.size();
+        int inicio = 2*N;
+        int fin = 2*N + 1;
+        
+        DigrafoAristaPonderada G = new DigrafoAristaPonderada(2*N + 2);
+        
+        for(int i = 0; i < ListaNodos.size(); i++){
+            Nodo x = ListaNodos.get(i);
+            double duracion = x.getDuracion();
+            G.agregarArista(new AristaDirigida(inicio, i, 0.0));
+            G.agregarArista(new AristaDirigida(i+N, fin, 0.0));
+            G.agregarArista(new AristaDirigida(i, i+N, duracion)); 
+
+            // precedence constraints
+            int M = x.getLista().size();
+            for (int j = 0; j < M; j++) {
+                int precedente = x.getLista().get(j);
+                G.agregarArista(new AristaDirigida(N+i, precedente, 0.0));
+            }
+        }
+        
+        LPAciclico cml = new LPAciclico(G, inicio);
+        
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        Object[] fila = new Object[modelo.getColumnCount()];
+        for(int i = 0; i < N; i++){
+            fila[0] = i;
+            fila[1] = ListaNodos.get(i).getDuracion();
+            fila[2] = cml.distanciaHacia(i);
+            fila[3] = cml.distanciaHacia(N + i);
+            modelo.addRow(fila);
+        }
+        tiempototal.setText(String.valueOf(cml.distanciaHacia(fin)));
+    }//GEN-LAST:event_PlanButtonActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        // TODO add your handling code here:
+        if(jTextActividad!= null && jTextDuracion != null){
+            int actividad = Integer.parseInt(jTextActividad.getText());
+            float duracion = Float.parseFloat(jTextDuracion.getText());
+            Nodo n = new Nodo(actividad,duracion,predecesores);
+            ListaNodos.add(n);
+            jTextAcPre.setText(null);
+            jTextActividad.setText(null);
+            jTextDuracion.setText(null);
+            predecesores.clear();
+        } else {}
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        // TODO add your handling code here:
+        jTextAcPre.setText(null);
+        jTextActividad.setText(null);
+        jTextDuracion.setText(null);
+        predecesores.clear();
+    }//GEN-LAST:event_clearButtonActionPerformed
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // TODO add your handling code here:
+        if(jTextAcPre.getText() != "" && jTextAcPre != null){
+            int n = Integer.parseInt(jTextAcPre.getText());
+            predecesores.add(n);
+            jTextAcPre.setText(null);
+        }
+    }//GEN-LAST:event_addButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -101,7 +282,19 @@ public class CPMView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton PlanButton;
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton clearButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextAcPre;
+    private javax.swing.JTextField jTextActividad;
+    private javax.swing.JTextField jTextDuracion;
+    private javax.swing.JButton saveButton;
+    private javax.swing.JTextField tiempototal;
     // End of variables declaration//GEN-END:variables
 }

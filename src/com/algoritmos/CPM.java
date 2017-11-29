@@ -84,8 +84,8 @@ public class CPM {
         LPAciclico cml = new LPAciclico(G, inicio);
 
         // print results
-        StdOut.println(" Tra   inicio  fin");
-        StdOut.println("--------------------");
+        //StdOut.println(" Tra   inicio  fin");
+        //StdOut.println("--------------------");
         for (int i = 0; i < N; i++) {
             System.out.printf("%4d %7.1f %7.1f\n", i, cml.distanciaHacia(i),
                     cml.distanciaHacia(i+N));

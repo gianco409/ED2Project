@@ -27,11 +27,9 @@
 
 package com.algoritmos;
 
-import com.stdlib.StdOut;
-import com.stdlib.In;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
-
+import com.stdlib.*;
 /**
  *  The <tt>Digrafo</tt> class represents a directed graph of vertices
  *  named 0 through <em>V</em> - 1.

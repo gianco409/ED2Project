@@ -11,9 +11,7 @@
 
 package com.algoritmos;
 
-import com.stdlib.StdOut;
-import com.stdlib.StdRandom;
-
+import com.stdlib.*;
 /**
  *  The <tt>AristaPonderadaDeCicloDirigido</tt> class represents a data type for 
   determining whether an edge-weighted digraph has a directed ciclo.

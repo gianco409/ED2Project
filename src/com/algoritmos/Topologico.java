@@ -29,7 +29,7 @@
 
 package com.algoritmos;
 
-import com.stdlib.StdOut;
+import com.stdlib.*;
 
 /**
  *  The <tt>Topologico</tt> class represents a data type for 
