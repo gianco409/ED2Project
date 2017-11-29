@@ -27,6 +27,7 @@ package com.algoritmos;
 
 import com.stdlib.StdOut;
 import com.stdlib.StdIn;
+import java.util.Scanner;
 
 /**
  *  The <tt>CPM</tt> class provides a client that solves the
@@ -55,9 +56,9 @@ public class CPM {
   and prints a feasible schedule hacia standard output.
      */
     public static void main(String[] args) {
-
+        Scanner read = new Scanner(System.in);
         // number of jobs
-        int N = StdIn.readInt();
+        int N = read.nextInt();
 
         // source and sink
         int inicio = 2*N;
@@ -66,15 +67,15 @@ public class CPM {
         // build network
         DigrafoAristaPonderada G = new DigrafoAristaPonderada(2*N + 2);
         for (int i = 0; i < N; i++) {
-            double duracion = StdIn.readDouble();
+            double duracion = read.nextDouble();
             G.agregarArista(new AristaDirigida(inicio, i, 0.0));
             G.agregarArista(new AristaDirigida(i+N, fin, 0.0));
-            G.agregarArista(new AristaDirigida(i, i+N,    duracion));
+            G.agregarArista(new AristaDirigida(i, i+N,    duracion)); 
 
             // precedence constraints
-            int M = StdIn.readInt();
+            int M = read.nextInt();
             for (int j = 0; j < M; j++) {
-                int precedente = StdIn.readInt();
+                int precedente = read.nextInt();
                 G.agregarArista(new AristaDirigida(N+i, precedente, 0.0));
             }
         }
@@ -86,10 +87,10 @@ public class CPM {
         StdOut.println(" Tra   inicio  fin");
         StdOut.println("--------------------");
         for (int i = 0; i < N; i++) {
-            StdOut.printf("%4d %7.1f %7.1f\n", i, cml.distanciaHacia(i),
+            System.out.printf("%4d %7.1f %7.1f\n", i, cml.distanciaHacia(i),
                     cml.distanciaHacia(i+N));
         }
-        StdOut.printf("Tiempo de terminación: %7.1f\n", cml.distanciaHacia(fin));
+        System.out.printf("Tiempo de terminación: %7.1f\n", cml.distanciaHacia(fin));
     }
 
 }
